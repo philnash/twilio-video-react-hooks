@@ -1,32 +1,143 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  color: #333e5a;
+  min-height: 100%;
+}
+
+header {
+  background: #f0293e;
+  color: #fff;
   text-align: center;
+  flex-grow: 0;
+  margin-bottom: 2em;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+h1 {
+  font-weight: 300;
+  padding: 0.4em 0;
 }
 
-.App-header {
-  background-color: #282c34;
+#root {
+  min-height: 100vh;
+}
+
+.app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+main {
+  background: #ffffff;
+  flex-grow: 1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+form {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-weight: 300;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+form > div {
+  width: 100%;
+  margin-bottom: 1em;
+}
+form > div > label {
+  display: block;
+  margin-bottom: 0.3em;
+}
+form > div > input {
+  display: block;
+  width: 100%;
+  font-size: 16px;
+  padding: 0.4em;
+  border-radius: 6px;
+  border: 1px solid #333e5a;
+}
+
+button {
+  background: #333e5a;
+  color: #fff;
+  font-size: 16px;
+  padding: 0.4em;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+button:hover {
+  filter: brightness(150%);
+}
+
+.room {
+  position: relative;
+}
+.room button {
+  position: absolute;
+  top: 0;
+  right: 20px;
+}
+.room > h3 {
+  text-align: center;
+  font-weight: 300;
+  margin-bottom: 1em;
+}
+
+.local-participant {
+  text-align: center;
+  margin-bottom: 2em;
+}
+.remote-participants {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 0 2em 2em;
+}
+.participant {
+  background: #333e5a;
+  padding: 10px;
+  border-radius: 6px;
+  display: inline-block;
+  margin-right: 10px;
+}
+.participant:last-child {
+  margin-right: 0;
+}
+.participant h3 {
+  text-align: center;
+  padding-bottom: 0.5em;
+  color: #fff;
+}
+
+video {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 6px;
+}
+
+footer {
+  background: #333e5a;
+  color: #fff;
+  text-align: center;
+  flex-grow: 0;
+  padding: 1em 0;
+}
+
+footer a {
+  color: #fff;
 }

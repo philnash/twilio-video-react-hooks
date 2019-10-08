@@ -8,6 +8,7 @@ const Participant = ({ participant }) => {
   const audioRef = useRef();
 
   useEffect(() => {
+    console.log(participant);
     setVideoTracks(Array.from(participant.videoTracks.values()));
     setAudioTracks(Array.from(participant.audioTracks.values()));
 
@@ -21,9 +22,9 @@ const Participant = ({ participant }) => {
 
     const trackUnsubscribed = track => {
       if (track.kind === 'video') {
-        setVideoTracks(videoTracks => videoTracks.filter(v => v === track));
+        setVideoTracks(videoTracks => videoTracks.filter(v => v !== track));
       } else {
-        setAudioTracks(audioTracks => audioTracks.filter(a => a === track));
+        setAudioTracks(audioTracks => audioTracks.filter(a => a !== track));
       }
     };
 

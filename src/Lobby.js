@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Login = ({
+const Lobby = ({
   username,
   handleUsernameChange,
   roomName,
@@ -37,4 +37,4 @@ const Login = ({
   );
 };
 
-export default Login;
+export default Lobby;

@@ -7,10 +7,13 @@ const Participant = ({ participant }) => {
   const videoRef = useRef();
   const audioRef = useRef();
 
+  const trackpubsToTracks = trackMap => Array.from(trackMap.values())
+    .map(publication => publication.track)
+    .filter(track => track !== null);
+
   useEffect(() => {
-    console.log(participant);
-    setVideoTracks(Array.from(participant.videoTracks.values()));
-    setAudioTracks(Array.from(participant.audioTracks.values()));
+    setVideoTracks(trackpubsToTracks(participant.videoTracks));
+    setAudioTracks(trackpubsToTracks(participant.audioTracks));
 
     const trackSubscribed = track => {
       if (track.kind === 'video') {

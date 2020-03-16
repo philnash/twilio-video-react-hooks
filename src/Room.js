@@ -29,6 +29,9 @@ const Room = ({ roomName, token, handleLogout }) => {
     return () => {
       setRoom(currentRoom => {
         if (currentRoom && currentRoom.localParticipant.state === 'connected') {
+          currentRoom.localParticipant.tracks.forEach(function(trackPublication) {
+            trackPublication.track.stop();
+          });
           currentRoom.disconnect();
           return null;
         } else {

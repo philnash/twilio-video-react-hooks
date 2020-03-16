@@ -2,6 +2,8 @@
 
 This is an example video chat application built with [Twilio Video](https://www.twilio.com/docs/video) and React, using Hooks.
 
+Learn how to build this entire application in the blog post [Build a Twilio Video Chat with React Hooks](https://www.twilio.com/blog/video-chat-react-hooks).
+
 ## Preparing the application
 
 To run the application you will need a [Twilio account](https://www.twilio.com/try-twilio) and Node.js and npm installed. Start by cloning or downloading the repo to your machine.

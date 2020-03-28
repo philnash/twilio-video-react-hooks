@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import Video from 'twilio-video';
-import Participant from './Participant';
+import React, { useState, useEffect } from "react";
+import Video from "twilio-video";
+import Participant from "./Participant";
 
 const Room = ({ roomName, token, handleLogout }) => {
   const [room, setRoom] = useState(null);
   const [participants, setParticipants] = useState([]);
+  const [toggleAudio, setToggleAudio] = useState(true);
+  const [toggleVideo, setToggleVideo] = useState(true);
 
   useEffect(() => {
     const participantConnected = participant => {
@@ -21,15 +23,17 @@ const Room = ({ roomName, token, handleLogout }) => {
       name: roomName
     }).then(room => {
       setRoom(room);
-      room.on('participantConnected', participantConnected);
-      room.on('participantDisconnected', participantDisconnected);
+      room.on("participantConnected", participantConnected);
+      room.on("participantDisconnected", participantDisconnected);
       room.participants.forEach(participantConnected);
     });
 
     return () => {
       setRoom(currentRoom => {
-        if (currentRoom && currentRoom.localParticipant.state === 'connected') {
-          currentRoom.localParticipant.tracks.forEach(function(trackPublication) {
+        if (currentRoom && currentRoom.localParticipant.state === "connected") {
+          currentRoom.localParticipant.tracks.forEach(function(
+            trackPublication
+          ) {
             trackPublication.track.stop();
           });
           currentRoom.disconnect();
@@ -41,8 +45,38 @@ const Room = ({ roomName, token, handleLogout }) => {
     };
   }, [roomName, token]);
 
+  const handleCallDisconnect = () => {
+    room.disconnect();
+  };
+
+  const handleAudioToggle = () => {
+    room.localParticipant.audioTracks.forEach(track => {
+      if (track.track.isEnabled) {
+        track.track.disable();
+      } else {
+        track.track.enable();
+      }
+      setToggleAudio(track.track.isEnabled);
+    });
+  };
+
+  const handleVideoToggle = () => {
+    room.localParticipant.videoTracks.forEach(track => {
+      if (track.track.isEnabled) {
+        track.track.disable();
+      } else {
+        track.track.enable();
+      }
+      setToggleVideo(track.track.isEnabled);
+    });
+  };
+
   const remoteParticipants = participants.map(participant => (
-    <Participant key={participant.sid} participant={participant} />
+    <Participant
+      key={participant.sid}
+      participant={participant}
+      isLocal={false}
+    />
   ));
 
   return (
@@ -54,9 +88,15 @@ const Room = ({ roomName, token, handleLogout }) => {
           <Participant
             key={room.localParticipant.sid}
             participant={room.localParticipant}
+            handleAudioToggle={handleAudioToggle}
+            handleVideoToggle={handleVideoToggle}
+            handleCallDisconnect={handleCallDisconnect}
+            toggleAudio={toggleAudio}
+            toggleVideo={toggleVideo}
+            isLocal={true}
           />
         ) : (
-          ''
+          ""
         )}
       </div>
       <h3>Remote Participants</h3>

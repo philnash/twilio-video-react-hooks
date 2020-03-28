@@ -18,6 +18,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "node-env-run server --exec nodemon | pino-colada",
+    "server:prod": "node server",
     "dev": "run-p server start"
   },
   "proxy": "http://localhost:3001",
@@ -30,6 +31,9 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "engines": {
+    "node": "12.x"
+  },
   "devDependencies": {
     "node-env-run": "^3.0.2",
     "nodemon": "^2.0.2",

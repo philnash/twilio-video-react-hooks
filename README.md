@@ -40,3 +40,24 @@ npm run dev
 ```
 
 This will open in your browser at [localhost:3000](http://localhost:3000).
+
+## Deploying this application to Heroku
+
+This application can be deployed to [Heroku](http://heroku.com/). To do so, follow these steps:
+
+- Make sure you have the [Heroku CLI](https://cli.heroku.com) installed and logged in to your Heroku account
+- Create a new application on Heroku
+
+      heroku create
+
+- Add the necessary config to the Heroku environment variables
+
+      heroku config:set TWILIO_ACCOUNT_SID=YOUR_ACCOUNT_SID TWILIO_API_KEY=YOUR_API_KEY TWILIO_API_SECRET=YOUR_API_SECRET
+
+- Push the application to Heroku
+
+      git push heroku deploy-to-heroku:master
+
+Heroku should handle the rest and you will be able to open the application in your browse once the deploy is complete.
+
+> _Note:_ This application example does not come with any authentication. You are responsible for ensuring that your application is only available to your users.

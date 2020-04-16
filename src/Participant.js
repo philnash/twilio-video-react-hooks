@@ -16,9 +16,10 @@ const Participant = ({ participant }) => {
     setAudioTracks(trackpubsToTracks(participant.audioTracks));
 
     const trackSubscribed = track => {
+      // track.kind === 'data' for DataTracks
       if (track.kind === 'video') {
         setVideoTracks(videoTracks => [...videoTracks, track]);
-      } else {
+      } else if (track.kind === 'audio') {
         setAudioTracks(audioTracks => [...audioTracks, track]);
       }
     };
@@ -26,7 +27,7 @@ const Participant = ({ participant }) => {
     const trackUnsubscribed = track => {
       if (track.kind === 'video') {
         setVideoTracks(videoTracks => videoTracks.filter(v => v !== track));
-      } else {
+      } else if (track.kind === 'audio'){
         setAudioTracks(audioTracks => audioTracks.filter(a => a !== track));
       }
     };

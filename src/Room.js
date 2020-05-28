@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Video from 'twilio-video';
 import Participant from './Participant';
+import LocalParticipant from './LocalParticipant';
 
 const Room = ({ roomName, token, handleLogout }) => {
   const [room, setRoom] = useState(null);
@@ -48,10 +49,10 @@ const Room = ({ roomName, token, handleLogout }) => {
   return (
     <div className="room">
       <h2>Room: {roomName}</h2>
-      <button onClick={handleLogout}>Log out</button>
+      <button className="log-out" onClick={handleLogout}>Log out</button>
       <div className="local-participant">
         {room ? (
-          <Participant
+          <LocalParticipant
             key={room.localParticipant.sid}
             participant={room.localParticipant}
           />

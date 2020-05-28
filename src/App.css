@@ -85,7 +85,7 @@ button:hover {
 .room {
   position: relative;
 }
-.room button {
+.room button.log-out {
   position: absolute;
   top: 0;
   right: 20px;

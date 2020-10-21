@@ -17,16 +17,20 @@ const Room = ({ roomName, token, handleLogout }) => {
       );
     };
 
-    Video.connect(token, {
+    let connectionPromise = Video.connect(token, {
       name: roomName
     }).then(room => {
       setRoom(room);
+      connectionPromise = null;
       room.on('participantConnected', participantConnected);
       room.on('participantDisconnected', participantDisconnected);
       room.participants.forEach(participantConnected);
     });
 
     return () => {
+      if (connectionPromise) {
+        connectionPromise.cancel();
+      }
       setRoom(currentRoom => {
         if (currentRoom && currentRoom.localParticipant.state === 'connected') {
           currentRoom.localParticipant.tracks.forEach(function(trackPublication) {
